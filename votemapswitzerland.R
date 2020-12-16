@@ -24,7 +24,7 @@ vd <- get_nationalvotes() %>%
   mutate(id2 = as.numeric(mun_id)) %>% 
   arrange(id2) %>% 
   select(-id2) %>% 
-  filter(id == 6360) %>% 
+  filter(id == 6360)
   # filter(canton_id == "2")
 
 # State at start
@@ -91,16 +91,16 @@ td <- tween_sf(start, end, ease = "cubic-in-out", nframes = 40, id = id)
 # Functions
 disperse_around_municipality <- function(data, mun_name, intensity = 40) {
   
-  #Preparation
+  # Preparation
   centroids <- suppressWarnings(st_centroid(data))
   distances <- as_tibble(st_distance(centroids))
   names(distances) <- data$id
   
-  ## Disperse from Zurich: Distance
+  # Distances
   id <- vd$mun_id[vd$mun_name == mun_name]
   distance <- distances[[id]] / 1000
   
-  ## Disperse from Zurich: Directions
+  # Directions
   centroidsXY <- centroids %>% 
     st_coordinates() %>% 
     as_tibble() %>% 
@@ -109,7 +109,7 @@ disperse_around_municipality <- function(data, mun_name, intensity = 40) {
   direction_x <- (centroidsXY$X - centroidsXY$X[centroidsXY$id == id]) / distance
   direction_y <- (centroidsXY$Y - centroidsXY$Y[centroidsXY$id == id]) / distance
   
-  ## Disperse from Zurich
+  # Disperse
   for (i in c(1:nrow(data))[-which(distance == 0)]) {
     data$geometry[i] <- data$geometry[i] + c(
       direction_x[i] * (intensity / distance[i]), 
@@ -119,8 +119,6 @@ disperse_around_municipality <- function(data, mun_name, intensity = 40) {
   
   # Return
   return(data)
-  
-  
   
 }
 get_collisions <- function(data) {
@@ -213,12 +211,13 @@ solve_collisions <- function(id1, id2, data, stabilize = 5000, stabilize_factor 
 }
 
 # Disperse Zurich area to achieve faster convergence
-if ("261" %in% end$id) end <- disperse_around_municipality(end, "Zürich", 40)
-if ("230" %in% end$id) end <- disperse_around_municipality(end, "Winterthur", 10)
-end %>% ggplot() + geom_sf()
+end1 <- end
+if ("261" %in% end$id) end1 <- disperse_around_municipality(end1, "Zürich", 40)
+if ("230" %in% end$id) end1 <- disperse_around_municipality(end1, "Winterthur", 10)
+end1 %>% ggplot() + geom_sf()
 
 # Initialize overlap avoidance
-end2 <- end
+end2 <- end1
 num_overlaps <- nrow(get_collisions(end2)) / 2
 counter <- 0
 
@@ -314,5 +313,73 @@ out <- map2(datalist, 1:length(datalist), plot_data, xlim, ylim)
 dev.off()
 
 # Make gif
-animation <- image_animate(img, fps = 10)
+animation <- image_animate(img, fps = 20)
 image_write(animation, "animation2.gif")
+
+# Plot Start, End 1, End 2 with legend -------------------------------------------------
+
+# Plot function
+plot_data2 <- function(data, xlim, ylim) {
+  
+  data %>% 
+    mutate(
+      stimmen = factor(case_when(
+        jaStimmenInProzent < 35 ~ "",
+        jaStimmenInProzent >= 35 & jaStimmenInProzent < 40 ~ "35", 
+        jaStimmenInProzent >= 40 & jaStimmenInProzent < 45 ~ "40",
+        jaStimmenInProzent >= 45 & jaStimmenInProzent < 50 ~ "45",
+        jaStimmenInProzent >= 50 & jaStimmenInProzent < 55 ~ "50",
+        jaStimmenInProzent >= 55 & jaStimmenInProzent < 60 ~ "55",
+        jaStimmenInProzent >= 60 & jaStimmenInProzent < 65 ~ "60",
+        jaStimmenInProzent >= 65 ~ "65"
+        ), levels = c("", "35", "40", "45", "50", "55", "60", "65")
+      )
+    ) %>% 
+    ggplot() +
+    geom_sf(aes(fill = stimmen), color = NA) +
+    coord_sf(xlim = xlim, ylim = ylim) +
+    scale_fill_manual(
+      values = c(
+        "#8d0613", "#c91022", "#f1434a", "#ff9193",
+        "#91cdff", "#42a2f1", "#1a7bc5", "#105182"
+      ),
+      drop = F,
+      name = "Percentage of yes votes",
+      guide = guide_legend(
+        direction = "horizontal",
+        keyheight = unit(2, units = "mm"),
+        keywidth = unit(c(25, rep(7, 6), 25), units = "mm"),
+        title.position = "top",
+        title.hjust = 0.5,
+        label.hjust = 1,
+        nrow = 1,
+        byrow = T,
+        reverse = T,
+        label.position = "bottom",
+      )
+    ) +
+    theme_void() +
+    theme(legend.position = "bottom")
+  
+}
+
+# Start
+start %>%
+  left_join(yes_share, by = c("id" = "mun_id")) %>% 
+  plot_data2(xlim, ylim)
+  
+ggsave("start.png", dpi = 500)
+
+# End 1 (before overlap avoidance)
+end %>%
+  left_join(yes_share, by = c("id" = "mun_id")) %>% 
+  plot_data2(xlim, ylim)
+
+ggsave("end1.png", dpi = 500)
+
+# End 2 (after overlap avoidance)
+end2 %>%
+  left_join(yes_share, by = c("id" = "mun_id")) %>% 
+  plot_data2(xlim, ylim)
+
+ggsave("end2.png", dpi = 500)
