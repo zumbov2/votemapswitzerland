@@ -1,4 +1,5 @@
 # Load packages ------------------------------------------------------------------------
+source("get_geodata.R")
 library(swissdd)
 library(dplyr)
 library(ggplot2)
@@ -23,7 +24,8 @@ vd <- get_nationalvotes() %>%
   mutate(id2 = as.numeric(mun_id)) %>% 
   arrange(id2) %>% 
   select(-id2) %>% 
-  filter(id == 6360)
+  filter(id == 6360) %>% 
+  # filter(canton_id == "2")
 
 # State at start
 start <- gd %>% 
@@ -210,10 +212,14 @@ solve_collisions <- function(id1, id2, data, stabilize = 5000, stabilize_factor 
   
 }
 
-# Disperse Zurich area to achieve faster convergence 
-end <- disperse_around_municipality(end, "Zürich", 40)
-end <- disperse_around_municipality(end, "Winterthur", 10)
-end %>% ggplot() + geom_sf()
+# Disperse Zurich area to achieve faster convergence
+if ("261" %in% end$id & "261" %in% end$id) {
+  
+  end <- disperse_around_municipality(end, "Zürich", 40)
+  end <- disperse_around_municipality(end, "Winterthur", 10)
+  end %>% ggplot() + geom_sf()
+  
+}
 
 # Initialize overlap avoidance
 end2 <- end
@@ -313,4 +319,4 @@ dev.off()
 
 # Make gif
 animation <- image_animate(img, fps = 10)
-image_write(animation, "animation.gif")
+image_write(animation, "animation2.gif")
