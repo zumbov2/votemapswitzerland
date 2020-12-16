@@ -213,13 +213,9 @@ solve_collisions <- function(id1, id2, data, stabilize = 5000, stabilize_factor 
 }
 
 # Disperse Zurich area to achieve faster convergence
-if ("261" %in% end$id & "261" %in% end$id) {
-  
-  end <- disperse_around_municipality(end, "Zürich", 40)
-  end <- disperse_around_municipality(end, "Winterthur", 10)
-  end %>% ggplot() + geom_sf()
-  
-}
+if ("261" %in% end$id) end <- disperse_around_municipality(end, "Zürich", 40)
+if ("230" %in% end$id) end <- disperse_around_municipality(end, "Winterthur", 10)
+end %>% ggplot() + geom_sf()
 
 # Initialize overlap avoidance
 end2 <- end
