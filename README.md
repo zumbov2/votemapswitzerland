@@ -13,7 +13,4 @@ A somewhat adapted (and overloaded) animation can be replicated with the help of
 <img src="https://github.com/zumbov2/votemapswitzerland/blob/main/animation2.gif" width="600">  
 
 ## Steps
-<img src="https://github.com/zumbov2/votemapswitzerland/blob/main/s1.png" width="300">  
-<img src="https://github.com/zumbov2/votemapswitzerland/blob/main/s2.png" width="300">  
-<img src="https://github.com/zumbov2/votemapswitzerland/blob/main/s3.png" width="300">  
-<img src="https://github.com/zumbov2/votemapswitzerland/blob/main/s4.png" width="300">  
+<img src="https://github.com/zumbov2/votemapswitzerland/blob/main/steps2.png" width="600">  
