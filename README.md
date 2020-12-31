@@ -7,7 +7,7 @@ This is a version of the famous visualization [«Land doesn't vote, people do»]
 <img src="https://github.com/zumbov2/votemapswitzerland/blob/main/steps1.png" width="600">  
 
 # Alternative visualisation
-An adapted animation can be replicated with the help of script [votemapswitzerland2.R](https://github.com/zumbov2/votemapswitzerland/blob/main/votemapswitzerland.R)
+An adapted animation can be replicated with the help of script [votemapswitzerland2.R](https://github.com/zumbov2/votemapswitzerland/blob/main/votemapswitzerland2.R)
 
 <img src="https://github.com/zumbov2/votemapswitzerland/blob/main/animation2.gif" width="600">  
 
