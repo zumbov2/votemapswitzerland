@@ -4,11 +4,10 @@ This is a version of the famous visualization [«Land doesn't vote, people do»]
 <img src="https://github.com/zumbov2/votemapswitzerland/blob/main/animation1.gif" width="600">  
 
 ## Start vs. End (with legend)
-<img src="https://github.com/zumbov2/votemapswitzerland/blob/main/start.png" width="300">  
-<img src="https://github.com/zumbov2/votemapswitzerland/blob/main/end2.png" width="300">  
+<img src="https://github.com/zumbov2/votemapswitzerland/blob/main/steps1.png" width="600">  
 
 # Alternative visualisation
-A somewhat adapted (and overloaded) animation can be replicated with the help of script [votemapswitzerland2.R](https://github.com/zumbov2/votemapswitzerland/blob/main/votemapswitzerland.R)
+An adapted animation can be replicated with the help of script [votemapswitzerland2.R](https://github.com/zumbov2/votemapswitzerland/blob/main/votemapswitzerland.R)
 
 <img src="https://github.com/zumbov2/votemapswitzerland/blob/main/animation2.gif" width="600">  
 
