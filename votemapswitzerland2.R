@@ -545,6 +545,7 @@ plot_data <- function(data, pos, xlim, ylim) {
       panel.grid.major = element_blank(),
       panel.grid.minor = element_blank(),
       axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
       plot.subtitle = element_text(hjust = 0.5),
       plot.caption = element_text(hjust = 0)
     )
