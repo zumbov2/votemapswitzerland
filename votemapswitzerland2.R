@@ -455,7 +455,7 @@ td_def <- td3 %>%
   mutate(jaStimmenInProzent = ifelse(
     .frame > tot - t3 - p4 & 
       str_detect(mun_id, "_cp") & 
-      jaStimmenInProzent <= 50, 49, jaStimmenInProzent
+      jaStimmenInProzent == 50, 49, jaStimmenInProzent
     )) %>% 
   mutate(
   stimmen = factor(case_when(
