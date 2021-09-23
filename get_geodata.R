@@ -1,5 +1,8 @@
+# Packages -----------------------------------------------------------------------------
 require(httr)
 require(stringr)
+
+# Functions ----------------------------------------------------------------------------
 check_geolevel <- function(geolevel, available_geolevels) {
   
   if (!geolevel %in% available_geolevels) stop("Please select valid 'geolevel'.")
@@ -59,6 +62,13 @@ get_geodata <- function(geolevel = "municipality", latest = T, verbose = F, call
       gd <- gd %>% 
         dplyr::mutate(id = vogenr) %>% 
         dplyr::select(-vogenr) 
+      
+    }
+    if ("vogeId" %in% names(gd)) {
+      
+      gd <- gd %>% 
+        dplyr::mutate(id = vogeId) %>% 
+        dplyr::select(-vogeId) 
       
     }
     
