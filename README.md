@@ -27,4 +27,5 @@ An alternative animation (here with the results of the [Amendment of the Hunting
 * [R Weekly Podcast, Issue 2021-W01 Highlights](https://rweekly.fireside.fm/21)
 * [reddit](https://www.reddit.com/r/dataisbeautiful/comments/knfbvp/oc_dont_trust_a_choropleth_mapevidence_from/)
 * [twitter](https://twitter.com/DavidZumbach/status/1344547411985911808)
+* [PrixCarto 2021](https://kartografie.ch/verleihung-prixcarto-2021/) / [Laudatio](https://kartografie.ch/wp-content/uploads//PrixCarto21_Laudationes.pdf) by [Ralph Straumann](https://www.ralphstraumann.ch/)
 
