@@ -6,6 +6,8 @@ This is a version of the famous visualization [«Land doesn't vote, people do»]
 ## Start vs. End (with legend)
 <img src="https://github.com/zumbov2/votemapswitzerland/blob/main/steps1.png" width="600">  
 
+<a href="https://kartografie.ch/verleihung-prixcarto-2021/"><img src="badge_prixcarto.svg" height="150px" align="right" style="padding-left:20px;background-color:white;"/></a>
+
 # Alternative visualisation
 An alternative animation (here with the results of the [Amendment of the Hunting Act](https://www.admin.ch/gov/en/start/documentation/votes/20200927/amendment-of-the-hunting-act.html)) can be replicated with the help of script [votemapswitzerland2.R](https://github.com/zumbov2/votemapswitzerland/blob/main/votemapswitzerland2.R)
 
@@ -21,7 +23,7 @@ An alternative animation (here with the results of the [Amendment of the Hunting
 * Visualization: [`ggplot2`](https://github.com/tidyverse/ggplot2) and [`hrbrthemes`](https://github.com/hrbrmstr/hrbrthemes)
 * Animation: [`transformr`](https://github.com/thomasp85/transformr), [`tweenr`](https://github.com/thomasp85/tweenr), and [`particles`](https://github.com/thomasp85/particles)
 
-## "Media"
+## Media and more
 * [R Weekly 2020-W51](https://rweekly.org/2020-51.html)
 * [R Weekly 2021-W01](https://rweekly.org/2021-W01.html)
 * [R Weekly Podcast, Issue 2021-W01 Highlights](https://rweekly.fireside.fm/21)
