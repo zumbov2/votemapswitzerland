@@ -6,7 +6,7 @@ This is a version of the famous visualization [«Land doesn't vote, people do»]
 ## Start vs. End (with legend)
 <img src="https://github.com/zumbov2/votemapswitzerland/blob/main/steps1.png" width="600">  
 
-<a href="https://kartografie.ch/verleihung-prixcarto-2021/"><img src="badge_prixcarto.svg" height="150px" align="right" style="padding-left:20px;background-color:white;"/></a>
+<a href="https://kartografie.ch/verleihung-prixcarto-2021/"><img src="badge_prixcarto.svg" height="60px" align="right" style="padding-left:20px;background-color:white;"/></a>
 
 # Alternative visualisation
 An alternative animation (here with the results of the [Amendment of the Hunting Act](https://www.admin.ch/gov/en/start/documentation/votes/20200927/amendment-of-the-hunting-act.html)) can be replicated with the help of script [votemapswitzerland2.R](https://github.com/zumbov2/votemapswitzerland/blob/main/votemapswitzerland2.R)
